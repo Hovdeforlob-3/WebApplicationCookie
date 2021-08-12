@@ -37,7 +37,6 @@ namespace WebApplicationCookie
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
-            //services.AddControllers(options => options.EnableEndpointRouting = false);
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
         }

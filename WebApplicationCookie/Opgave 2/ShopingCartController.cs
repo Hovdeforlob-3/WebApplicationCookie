@@ -19,14 +19,6 @@ namespace WebApplicationCookie
         [HttpGet]
         public IEnumerable<Produckt> Get(string productName, int price)
         {
-            //List<Produckt> produckts = new List<Produckt>();
-
-
-            //HttpContext.Session.SetObjectAsJson("ShoppingCart", ShoppingCart);
-
-
-            //List<Produckt> ShoppingCart = new List<Produckt>();
-
             List<Produckt> ShoppingCart = HttpContext.Session.GetObjectFromJson<List<Produckt>>("ShoppingCart");
 
             if (HttpContext.Session.GetObjectFromJson<List<Produckt>>("ShoppingCart") == null)
@@ -40,13 +32,6 @@ namespace WebApplicationCookie
                 ShoppingCart.Add(new Produckt { Name = productName, Price = price });
                 HttpContext.Session.SetObjectAsJson("ShoppingCart", ShoppingCart);
             }
-
-
-
-            //var cart = JsonConvert.SerializeObject(ShoppingCart);
-            //HttpContext.Session.SetString("My_key", cart);
-
-
             return ShoppingCart;
         }
 
@@ -54,8 +39,7 @@ namespace WebApplicationCookie
         [Route("[action]")]
         public IEnumerable<Produckt> GetCart()
         {
-           //var obj = JsonConvert.DeserializeObject<dynamic>("ShoppingCart");
-            var produckt = HttpContext.Session.GetObjectFromJson<List<Produckt>>("ShoppingCart");
+            List<Produckt> produckt = HttpContext.Session.GetObjectFromJson<List<Produckt>>("ShoppingCart");
             return produckt;
         }
     }

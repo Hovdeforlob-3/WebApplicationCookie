@@ -14,7 +14,7 @@ namespace WebApplicationCookie
     {
         // GET: api/<DeleteContoller>
         [HttpGet]
-        public IEnumerable<Produckt> Get(string productName, int price)
+        public IEnumerable<Produckt> Get(string productName)
         {
           List<Produckt> Shopingcart =  HttpContext.Session.GetObjectFromJson<List<Produckt>>("ShoppingCart");
             Produckt produckt = new Produckt();
@@ -23,7 +23,7 @@ namespace WebApplicationCookie
 
             if (Shopingcart.Any(s => produckt.Name.Contains(productName)))
             {
-                var itemToRemove = Shopingcart.Single(r => r.Name == productName);
+                Produckt itemToRemove = Shopingcart.Single(r => r.Name == productName);
                 Shopingcart.Remove(itemToRemove);
 
                 HttpContext.Session.SetObjectAsJson("ShoppingCart", Shopingcart);
