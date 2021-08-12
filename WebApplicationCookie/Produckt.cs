@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApplicationCookie
 {
-    public class Class
+    public class Produckt
     {
+        public string Name { get; set; }
+        public int Price { get; set; }
     }
 }
